@@ -19,7 +19,7 @@ export function MicButton({ phase, level, onStart, onStop }: MicButtonProps) {
       onClick={isActive ? onStop : onStart}
       aria-pressed={isActive}
       className={cx(
-        'group relative flex h-36 w-36 items-center justify-center rounded-full outline-none transition-[background,box-shadow] duration-300 sm:h-40 sm:w-40',
+        'group relative flex h-24 w-24 items-center justify-center rounded-full outline-none transition-[background,box-shadow] duration-300 sm:h-28 sm:w-28',
         'focus-visible:ring-2 focus-visible:ring-amber-glow focus-visible:ring-offset-4 focus-visible:ring-offset-ink-950',
         isActive
           ? 'bg-gradient-to-br from-amber-glow to-ember shadow-[0_0_70px_-8px_rgba(245,185,66,0.55)]'
@@ -42,8 +42,8 @@ export function MicButton({ phase, level, onStart, onStop }: MicButtonProps) {
           isActive ? 'text-ink-950' : 'text-white/70 group-hover:text-white',
         )}
       >
-        {isActive ? <StopIcon className="h-8 w-8" /> : <MicIcon className="h-9 w-9" />}
-        <span className="text-xs font-semibold uppercase tracking-[0.18em]">
+        {isActive ? <StopIcon className="h-6 w-6" /> : <MicIcon className="h-7 w-7" />}
+        <span className="text-[11px] font-semibold uppercase tracking-[0.18em]">
           {isActive ? 'Stop' : 'Start'}
         </span>
       </span>

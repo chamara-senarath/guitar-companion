@@ -74,7 +74,7 @@ export function Fretboard({ chord, detectedAt }: { chord: ChordMatch | null; det
   }, [chord])
 
   return (
-    <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-4 sm:p-6">
+    <div className="min-h-0 shrink-0 rounded-2xl border border-white/5 bg-white/[0.02] p-3 sm:p-4">
       <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} className="w-full" role="img" aria-label="Guitar fretboard">
         <defs>
           <linearGradient id="neckGrad" x1="0" y1="0" x2="0" y2="1">
