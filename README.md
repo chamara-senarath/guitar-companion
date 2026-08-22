@@ -1,6 +1,6 @@
-# Fretwise
+# Guitar Companion
 
-Fretwise listens through your microphone and tells you what guitar chord you
+Guitar Companion listens through your microphone and tells you what guitar chord you
 just played, in real time — with the matching notes lit up on an animated
 fretboard. It's the first tool in what's meant to grow into a small set of
 practice tools for guitar learners.

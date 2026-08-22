@@ -11,14 +11,13 @@ function App() {
 
   return (
     <div className="mx-auto flex h-dvh max-w-5xl flex-col overflow-hidden px-4 py-3 sm:px-6 sm:py-4">
-      <header className="flex flex-col items-center shrink-0 text-center">
-        <div className="flex items-center gap-2 text-white/40">
-          <span className="h-1.5 w-1.5 rounded-full bg-amber-glow" />
-          <span className="text-[10px] font-semibold uppercase tracking-[0.3em]">
-            Guitar companion
-          </span>
+      <header className="flex shrink-0 flex-col items-start text-left">
+        <div className="flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-amber-glow" />
+          <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            Guitar Companion
+          </h1>
         </div>
-        <h1 className="mt-1 text-2xl font-bold tracking-tight text-white sm:text-3xl">Fretwise</h1>
         <p className="mt-1 max-w-md text-xs text-white/40 sm:text-sm">
           Listens through your mic and tells you exactly what chord you just played.
         </p>
