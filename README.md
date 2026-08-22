@@ -25,54 +25,21 @@ browser:
    and highlighted on the fretboard SVG
    ([`src/components/Fretboard.tsx`](src/components/Fretboard.tsx)).
 
+## What you see
+
+A live input level meter, the currently detected chord with its confidence, the
+chord's notes listed by role (root, third, fifth, etc.), and an animated
+fretboard where the detected chord's notes light up across the fretboard. A
+"Start" button prompts for microphone access.
+
+## Tips for best results
+
 This works best with a single, clean strum held for a second in a quiet room —
 it's a lightweight signal-processing heuristic, not a trained model, so noisy
 input or fast chord changes will be less reliable.
 
-## Getting started
-
-```bash
-npm install
-npm run dev
-```
-
-Open the printed local URL in a browser and click **Start** — you'll be
-prompted for microphone access.
-
-## Building
-
-```bash
-npm run build
-```
-
-Outputs a static site to `dist/`. `vite.config.ts` uses `base: './'` so the
-build works from any subpath, which is what makes GitHub Pages hosting
-straightforward.
-
-## Deploying to GitHub Pages
-
-**Option A — GitHub Actions (recommended).** This repo includes
-[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds
-and deploys on every push to `main`. One-time setup after pushing to GitHub:
-
-1. In the repo, go to **Settings → Pages**.
-2. Under **Build and deployment → Source**, choose **GitHub Actions**.
-3. Push to `main` (or run the workflow manually from the **Actions** tab).
-
-Your site will be published at `https://<your-username>.github.io/<repo-name>/`.
-
-**Option B — manual deploy with `gh-pages`.**
-
-```bash
-npm run deploy
-```
-
-This builds the app and pushes `dist/` to a `gh-pages` branch (via the
-`gh-pages` package). Then point GitHub Pages at the `gh-pages` branch under
-**Settings → Pages**.
-
 ## Browser support note
 
 Microphone access via `getUserMedia` requires a secure context (HTTPS, or
-`localhost` in dev) — GitHub Pages serves over HTTPS, so this is satisfied
-automatically once deployed.
+`localhost` when running locally), since the app relies on getting clean audio
+input from your mic.
