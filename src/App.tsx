@@ -69,6 +69,7 @@ function App() {
           Works best with clean, held strums in a quiet room — recognizes major, minor, 7th,
           maj7, min7, sus2, sus4, dim &amp; aug chords.
         </p>
+        <p className="mt-1">Made with ♥ and creativity by Chamara Senarath</p>
       </footer>
     </div>
   )
