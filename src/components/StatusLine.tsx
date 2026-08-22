@@ -23,16 +23,7 @@ function ThinkingDots() {
 
 export function StatusLine({ phase }: { phase: DetectionPhase }) {
   return (
-    <div className="flex items-center gap-2 text-sm font-medium text-white/60">
-      <span
-        className={
-          phase === 'idle'
-            ? 'h-2 w-2 rounded-full bg-white/20'
-            : phase === 'detected'
-              ? 'h-2 w-2 rounded-full bg-emerald-400'
-              : 'h-2 w-2 rounded-full bg-amber-glow animate-pulse'
-        }
-      />
+    <div className="flex items-center gap-2 whitespace-nowrap text-sm font-medium text-white/60">
       <span>{COPY[phase]}</span>
       {phase === 'analyzing' && <ThinkingDots />}
     </div>

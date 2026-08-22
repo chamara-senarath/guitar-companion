@@ -1,24 +1,40 @@
+import { useEffect } from 'react'
 import { ChordCard } from './components/ChordCard'
 import { ChordLegend } from './components/ChordLegend'
 import { Fretboard } from './components/Fretboard'
 import { LevelMeter } from './components/LevelMeter'
 import { MicButton } from './components/MicButton'
+import { ShortcutHint } from './components/ShortcutHint'
 import { StatusLine } from './components/StatusLine'
 import { useChordListener } from './hooks/useChordListener'
 
 function App() {
   const { state, error, start, stop } = useChordListener()
+  const isActive = state.phase !== 'idle'
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.code !== 'Space') return
+      const target = event.target as HTMLElement | null
+      if (target?.isContentEditable) return
+      if (target && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) return
+
+      event.preventDefault()
+      if (isActive) stop()
+      else start()
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isActive, start, stop])
 
   return (
     <div className="mx-auto flex h-dvh max-w-5xl flex-col overflow-hidden px-4 py-3 sm:px-6 sm:py-4">
       <header className="flex shrink-0 flex-col items-start text-left">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-amber-glow" />
-          <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            Guitar Companion
-          </h1>
-        </div>
-        <p className="mt-1 max-w-md text-xs text-white/40 sm:text-sm">
+        <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          Guitar Companion
+        </h1>
+        <p className="mt-1 whitespace-nowrap text-[11px] text-white/40 sm:text-sm">
           Listens through your mic and tells you exactly what chord you just played.
         </p>
       </header>
@@ -31,7 +47,7 @@ function App() {
           <section className="flex flex-col items-center justify-center gap-2.5">
             <MicButton phase={state.phase} level={state.level} onStart={start} onStop={stop} />
             <StatusLine phase={state.phase} />
-            <LevelMeter level={state.level} active={state.phase !== 'idle'} />
+            <LevelMeter level={state.level} active={isActive} />
             {error && (
               <p className="max-w-[220px] text-center text-xs text-ember" role="alert">
                 {error}
@@ -43,6 +59,7 @@ function App() {
             <ChordCard chord={state.chord} phase={state.phase} detectedAt={state.detectedAt} />
             <Fretboard chord={state.chord} detectedAt={state.detectedAt} />
             <ChordLegend chord={state.chord} />
+            <ShortcutHint isActive={isActive} />
           </section>
         </div>
       </main>
